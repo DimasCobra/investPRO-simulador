@@ -13,6 +13,8 @@
         font-family: 'Inter', sans-serif; 
         background-color: #f8fafc; 
         color: #1e293b;
+        margin: 0;
+        padding: 0;
       }
       .custom-scrollbar::-webkit-scrollbar { width: 6px; }
       .custom-scrollbar::-webkit-scrollbar-track { background: #f1f5f9; }
@@ -20,10 +22,17 @@
       .animate-fade-in { animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
       @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       
-      /* Reset para garantir que inputs não fiquem escuros no preview */
-      input, select {
-        background-color: white !important;
-        color: #334155 !important;
+      /* Força cores claras nos inputs para evitar bugs de tema escuro no preview */
+      input, select, textarea {
+        background-color: #ffffff !important;
+        color: #1e293b !important;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      
+      #root {
+        background-color: #f8fafc;
+        min-height: 100vh;
       }
     </style>
     <script type="importmap">
