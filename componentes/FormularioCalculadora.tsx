@@ -16,7 +16,7 @@ interface FormularioCalculadoraProps {
 }
 
 const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraProps) => {
-  const [valorInicial, setValorInicial] = useState('10.001,00');
+  const [valorInicial, setValorInicial] = useState('1.000,00');
   const [valorMensal, setValorMensal] = useState('1.000,00');
   const [taxa, setTaxa] = useState('8');
   const [unidadeTaxa, setUnidadeTaxa] = useState(UnidadeTaxa.ANUAL);

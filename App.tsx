@@ -3,7 +3,7 @@ import FormularioCalculadora from './componentes/FormularioCalculadora';
 import VisualizacaoResultados from './componentes/VisualizacaoResultados';
 import ConteudoEducacional from './componentes/ConteudoEducacional';
 import { ResumoSimulacao, UnidadeTaxa, UnidadeTempo } from './tipos';
-import { calcularJurosCompostos } from './utilitarista/utilitariosFinanceiros';
+import { calcularJurosCompostos } from './utilitarios/utilitariosFinanceiros';
 
 const App: React.FC = () => {
   const [resultado, setResultado] = useState<ResumoSimulacao | null>(null);
@@ -11,7 +11,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Cálculo inicial automático para preencher a tela no preview
     gerenciarCalculo({
-      valorInicial: 10001,
+      valorInicial: 1000,
       valorMensal: 1000,
       taxa: 8,
       unidadeTaxa: UnidadeTaxa.ANUAL,
@@ -43,7 +43,7 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900 pb-20 selection:bg-red-100 selection:text-red-900">
-      <header className="bg-white/90 backdrop-blur-md border-b border-slate-100 py-6 mb-16 sticky top-0 z-50">
+      <header className="bg-white border-b border-slate-100 py-6 mb-16 sticky top-0 z-50 shadow-sm">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-red-800 w-12 h-12 rounded-[1.25rem] flex items-center justify-center shadow-lg shadow-red-800/20">
@@ -60,14 +60,14 @@ const App: React.FC = () => {
       </header>
 
       <main className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-16 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in relative z-0">
           <h2 className="text-4xl sm:text-6xl font-black text-slate-900 mb-6 tracking-tight">O Poder do Tempo</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
             Visualize o crescimento exponencial do seu patrimônio com nosso simulador de alta precisão.
           </p>
         </div>
 
-        <div className="space-y-16">
+        <div className="space-y-16 relative z-10">
           <FormularioCalculadora aoCalcular={gerenciarCalculo} aoLimpar={gerenciarLimpeza} />
           {resultado && <VisualizacaoResultados resumo={resultado} />}
           <ConteudoEducacional />
