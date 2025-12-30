@@ -144,3 +144,43 @@ Após o ícone verde aparecer na aba Actions, acesse:
 
 ---
 © 2025 InvestiPRO - Engenharia Financeira
+
+
+# InvestiPRO - Produção & Deploy
+
+## 🚀 Como resolver o erro "HttpError: Not Found" no Deploy
+
+Se o seu GitHub Action falhou com a mensagem `HttpError: Not Found`, é porque o repositório ainda não está autorizado a aceitar deploys via Actions.
+
+### Solução Passo a Passo:
+
+1. **Ative o GitHub Actions como fonte**:
+   - No seu repositório GitHub, vá em **Settings** > **Pages**.
+   - Procure a seção **Build and deployment**.
+   - Em **Source**, mude de "Deploy from a branch" para **GitHub Actions**.
+   
+2. **Re-execute o Workflow**:
+   - Vá na aba **Actions**.
+   - Clique no workflow que falhou à esquerda.
+   - Clique no botão **Re-run jobs** > **Re-run all jobs**.
+
+## 🛠 Comandos para Push (Terminal VSCode)
+
+Se você tiver problemas para enviar as mudanças, use estes comandos em ordem:
+
+```bash
+# Adiciona as mudanças
+git add .
+
+# Grava a versão
+git commit -m "fix: ajuste de base path e configuracao de deploy"
+
+# Envia para o GitHub
+git push origin main
+```
+
+## 🔗 Link do Projeto
+[https://DimasCobra.github.io/investPRO-simulador/](https://DimasCobra.github.io/investPRO-simulador/)
+
+---
+© 2025 InvestiPRO - Engenharia Financeira
