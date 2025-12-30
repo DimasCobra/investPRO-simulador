@@ -98,7 +98,7 @@ Este simulador foi desenvolvido com foco em precisão contábil brasileira e exp
    ```
 4. Conecte ao seu repositório remoto:
    ```bash
-   git remote add origin https://github.com/SEU_USUARIO/NOME_DO_REPO.git
+   git remote add origin https://github.com/DimasCobra/investPRO-simulador.git
    ```
 5. Envie para o GitHub:
    ```bash
