@@ -3,7 +3,7 @@ import FormularioCalculadora from './componentes/FormularioCalculadora';
 import VisualizacaoResultados from './componentes/VisualizacaoResultados';
 import ConteudoEducacional from './componentes/ConteudoEducacional';
 import { ResumoSimulacao, UnidadeTaxa, UnidadeTempo } from './tipos';
-import { calcularJurosCompostos } from './utilitarios/utilitariosFinanceiros';
+import { calcularJurosCompostos } from './utilitarista/utilitariosFinanceiros';
 
 const App: React.FC = () => {
   const [resultado, setResultado] = useState<ResumoSimulacao | null>(null);
