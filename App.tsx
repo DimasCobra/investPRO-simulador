@@ -9,12 +9,13 @@ const App: React.FC = () => {
   const [resultado, setResultado] = useState<ResumoSimulacao | null>(null);
 
   useEffect(() => {
+    // Cálculo inicial automático para preencher a tela no preview
     gerenciarCalculo({
-      valorInicial: 1000,
+      valorInicial: 10001,
       valorMensal: 1000,
       taxa: 8,
       unidadeTaxa: UnidadeTaxa.ANUAL,
-      periodo: 10,
+      periodo: 20,
       unidadeTempo: UnidadeTempo.ANOS
     });
   }, []);
@@ -41,8 +42,8 @@ const App: React.FC = () => {
   const gerenciarLimpeza = () => setResultado(null);
 
   return (
-    <div className="min-h-screen bg-[#f8fafc] text-slate-900 pb-20">
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-100 py-6 mb-16 sticky top-0 z-50">
+    <div className="min-h-screen bg-[#f8fafc] text-slate-900 pb-20 selection:bg-red-100 selection:text-red-900">
+      <header className="bg-white/90 backdrop-blur-md border-b border-slate-100 py-6 mb-16 sticky top-0 z-50">
         <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="bg-red-800 w-12 h-12 rounded-[1.25rem] flex items-center justify-center shadow-lg shadow-red-800/20">
@@ -59,14 +60,14 @@ const App: React.FC = () => {
       </header>
 
       <main className="max-w-5xl mx-auto px-6">
-        <div className="text-center mb-20 animate-fade-in">
+        <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl sm:text-6xl font-black text-slate-900 mb-6 tracking-tight">O Poder do Tempo</h2>
           <p className="text-slate-500 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
             Visualize o crescimento exponencial do seu patrimônio com nosso simulador de alta precisão.
           </p>
         </div>
 
-        <div className="space-y-20">
+        <div className="space-y-16">
           <FormularioCalculadora aoCalcular={gerenciarCalculo} aoLimpar={gerenciarLimpeza} />
           {resultado && <VisualizacaoResultados resumo={resultado} />}
           <ConteudoEducacional />

@@ -16,7 +16,7 @@ interface FormularioCalculadoraProps {
 }
 
 const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraProps) => {
-  const [valorInicial, setValorInicial] = useState('1.000,00');
+  const [valorInicial, setValorInicial] = useState('10.001,00');
   const [valorMensal, setValorMensal] = useState('1.000,00');
   const [taxa, setTaxa] = useState('8');
   const [unidadeTaxa, setUnidadeTaxa] = useState(UnidadeTaxa.ANUAL);
@@ -42,41 +42,41 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
   };
 
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
+    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 animate-fade-in">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Valor inicial (R$)</label>
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
+          <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
             <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">R$</span>
             <input 
               type="text" 
               value={valorInicial} 
               onChange={gerenciarMudancaMoeda(setValorInicial)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
             />
           </div>
         </div>
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Valor mensal (R$)</label>
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
+          <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
             <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">R$</span>
             <input 
               type="text" 
               value={valorMensal} 
               onChange={gerenciarMudancaMoeda(setValorMensal)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
             />
           </div>
         </div>
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Taxa de juros (%)</label>
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
+          <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
             <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">%</span>
             <input 
               type="text" 
               value={taxa} 
               onChange={(e) => setTaxa(e.target.value)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
             />
             <select 
               value={unidadeTaxa} 
@@ -90,12 +90,12 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
         </div>
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Período</label>
-          <div className="flex border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
+          <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
             <input 
               type="number" 
               value={periodo} 
               onChange={(e) => setPeriodo(e.target.value)} 
-              className="flex-1 px-6 py-4 outline-none font-bold text-slate-700" 
+              className="flex-1 px-6 py-4 outline-none font-bold text-slate-700 bg-white" 
             />
             <select 
               value={unidadeTempo} 

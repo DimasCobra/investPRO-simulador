@@ -107,3 +107,40 @@ Este simulador foi desenvolvido com foco em precisão contábil brasileira e exp
 
 ---
 **Nota:** Se encontrar erros de importação no VSCode após colar os arquivos, delete as pastas antigas `components` e `utils` (em inglês) para evitar conflitos de cache do TypeScript.
+
+# InvestiPRO - Produção & Deploy
+
+## 🚀 Como resolver o erro "HttpError: Not Found" no Deploy
+
+Se o seu GitHub Action falhou com a mensagem `HttpError: Not Found`, siga estes passos:
+
+1. **Ative o GitHub Actions como fonte**:
+   - Vá em **Settings** > **Pages**.
+   - Em **Build and deployment** > **Source**, selecione **GitHub Actions**.
+   
+2. **Re-execute o Deploy**:
+   - Vá na aba **Actions**.
+   - Clique no workflow que falhou à esquerda.
+   - Clique no botão cinza **Re-run jobs** > **Re-run all jobs**.
+
+## 🛠 Comandos para Atualizar o Site
+
+Sempre que fizer uma mudança no código, use esta sequência no terminal do VSCode:
+
+```bash
+# 1. Prepara os arquivos
+git add .
+
+# 2. Grava a mudança
+git commit -m "fix: ajuste de base path e configuracoes de deploy"
+
+# 3. Envia para o GitHub (isso dispara o deploy automatico)
+git push origin main
+```
+
+## 🔗 Link do Projeto
+Após o ícone verde aparecer na aba Actions, acesse:
+[https://DimasCobra.github.io/investPRO-simulador/](https://DimasCobra.github.io/investPRO-simulador/)
+
+---
+© 2025 InvestiPRO - Engenharia Financeira
