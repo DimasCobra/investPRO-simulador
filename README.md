@@ -184,3 +184,48 @@ git push origin main
 
 ---
 © 2025 InvestiPRO - Engenharia Financeira
+
+# InvestiPRO - Produção & Deploy
+
+## 📂 Estrutura de Pastas Atualizada
+```text
+investPRO-simulador/
+├── componentes/        # UI (Formulários, Gráficos)
+├── utilitarista/       # Lógica Matemática e Financeira (NOVO)
+├── tipos.ts            # Definições globais
+└── App.tsx             # Orquestrador principal
+```
+
+## 🚀 Como resolver o erro "HttpError: Not Found" no Deploy
+
+Se o seu GitHub Action falhou com a mensagem `HttpError: Not Found`, é porque o repositório ainda não está autorizado a aceitar deploys via Actions.
+
+### Solução Passo a Passo:
+
+1. **Ative o GitHub Actions como fonte**:
+   - No seu repositório GitHub, vá em **Settings** > **Pages**.
+   - Procure a seção **Build and deployment**.
+   - Em **Source**, mude de "Deploy from a branch" para **GitHub Actions**.
+   
+2. **Re-execute o Workflow**:
+   - Vá na aba **Actions**.
+   - Clique no workflow que falhou à esquerda.
+   - Clique no botão **Re-run jobs** > **Re-run all jobs**.
+
+## 🛠 Comandos para Push (Terminal VSCode)
+
+Sempre que fizer alterações (como a renomeação da pasta), execute:
+
+```bash
+# 1. Adiciona as mudanças
+git add .
+
+# 2. Grava a versão
+git commit -m "refactor: renomeia pasta utilitarios para utilitarista e ajusta precisao"
+
+# 3. Envia para o GitHub
+git push origin main
+```
+
+---
+© 2025 InvestiPRO - Engenharia Financeira

@@ -20,7 +20,7 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
   const [valorMensal, setValorMensal] = useState('1.000,00');
   const [taxa, setTaxa] = useState('8');
   const [unidadeTaxa, setUnidadeTaxa] = useState(UnidadeTaxa.ANUAL);
-  const [periodo, setPeriodo] = useState('20');
+  const [periodo, setPeriodo] = useState('10');
   const [unidadeTempo, setUnidadeTempo] = useState(UnidadeTempo.ANOS);
 
   const converterParaNumero = (val: string): number => {
@@ -41,42 +41,53 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
     setter(formatarEntradaMoeda(e.target.value));
   };
 
+  const handleCalcular = () => {
+    aoCalcular({ 
+      valorInicial: converterParaNumero(valorInicial), 
+      valorMensal: converterParaNumero(valorMensal), 
+      taxa: converterParaNumero(taxa), 
+      unidadeTaxa, 
+      periodo: parseInt(periodo) || 0, 
+      unidadeTempo 
+    });
+  };
+
   return (
-    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 animate-fade-in">
+    <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 animate-fade-in relative z-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Valor inicial (R$)</label>
           <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
-            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">R$</span>
+            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100 flex items-center">R$</span>
             <input 
               type="text" 
               value={valorInicial} 
               onChange={gerenciarMudancaMoeda(setValorInicial)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white min-w-0" 
             />
           </div>
         </div>
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Valor mensal (R$)</label>
           <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
-            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">R$</span>
+            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100 flex items-center">R$</span>
             <input 
               type="text" 
               value={valorMensal} 
               onChange={gerenciarMudancaMoeda(setValorMensal)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white min-w-0" 
             />
           </div>
         </div>
         <div className="space-y-2">
           <label className="text-xs font-black uppercase text-slate-500 tracking-wider">Taxa de juros (%)</label>
           <div className="flex bg-white border border-slate-200 rounded-2xl overflow-hidden focus-within:ring-4 focus-within:ring-red-800/5 transition-all">
-            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100">%</span>
+            <span className="bg-slate-50 px-5 py-4 text-slate-400 font-bold border-r border-slate-100 flex items-center">%</span>
             <input 
               type="text" 
               value={taxa} 
               onChange={(e) => setTaxa(e.target.value)} 
-              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white" 
+              className="flex-1 px-5 py-4 outline-none font-bold text-slate-700 bg-white min-w-0" 
             />
             <select 
               value={unidadeTaxa} 
@@ -95,7 +106,7 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
               type="number" 
               value={periodo} 
               onChange={(e) => setPeriodo(e.target.value)} 
-              className="flex-1 px-6 py-4 outline-none font-bold text-slate-700 bg-white" 
+              className="flex-1 px-6 py-4 outline-none font-bold text-slate-700 bg-white min-w-0" 
             />
             <select 
               value={unidadeTempo} 
@@ -110,14 +121,7 @@ const FormularioCalculadora = ({ aoCalcular, aoLimpar }: FormularioCalculadoraPr
       </div>
       <div className="mt-10 pt-8 border-t border-slate-50 flex flex-col sm:flex-row justify-between items-center gap-6">
         <button 
-          onClick={() => aoCalcular({ 
-            valorInicial: converterParaNumero(valorInicial), 
-            valorMensal: converterParaNumero(valorMensal), 
-            taxa: converterParaNumero(taxa), 
-            unidadeTaxa, 
-            periodo: parseInt(periodo) || 0, 
-            unidadeTempo 
-          })} 
+          onClick={handleCalcular} 
           className="w-full sm:w-auto px-12 py-4 bg-red-800 text-white font-black rounded-2xl shadow-xl shadow-red-800/20 active:scale-95 transition-all hover:bg-red-900"
         >
           Calcular

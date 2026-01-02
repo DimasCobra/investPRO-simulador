@@ -9,7 +9,8 @@ export const formatarMoeda = (valor: number): string => {
   }).format(valor);
 };
 
-const arredondar = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
+// Arredondamento apenas para fins de exibição
+const arredondarDisplay = (num: number) => Math.round((num + Number.EPSILON) * 100) / 100;
 
 export const calcularJurosCompostos = (
   valorInicial: number,
@@ -20,6 +21,7 @@ export const calcularJurosCompostos = (
   unidadeTempo: UnidadeTempo
 ): ResumoSimulacao => {
   
+  // Conversão de taxa (Geométrica: Anual -> Mensal)
   let taxaMensal = (taxaJuros / 100);
   if (unidadeTaxa === UnidadeTaxa.ANUAL) {
     taxaMensal = Math.pow(1 + taxaMensal, 1 / 12) - 1;
@@ -28,39 +30,40 @@ export const calcularJurosCompostos = (
   const totalMeses = unidadeTempo === UnidadeTempo.ANOS ? periodo * 12 : periodo;
   const resultados: ResultadoSimulacao[] = [];
   
-  let saldoAtual = 0;
-  let investidoAcumulado = 0;
+  let saldoAtual = valorInicial;
+  let investidoAcumulado = valorInicial;
   let jurosAcumulado = 0;
 
-  for (let m = 0; m <= totalMeses; m++) {
-    const aporte = (m === 0) ? valorInicial : valorMensal;
-    const baseCalculo = saldoAtual + aporte;
-    investidoAcumulado = arredondar(investidoAcumulado + aporte);
+  // Mês 0 (Estado Inicial)
+  resultados.push({
+    mes: 0,
+    juros: 0,
+    totalInvestido: arredondarDisplay(investidoAcumulado),
+    totalJuros: 0,
+    totalAcumulado: arredondarDisplay(saldoAtual)
+  });
+
+  for (let m = 1; m <= totalMeses; m++) {
+    // Cálculo com precisão total (sem arredondar o saldoAtual no meio do loop)
+    const jurosNoMes = saldoAtual * taxaMensal;
     
-    let jurosNoMes = 0;
-    let saldoComJuros = baseCalculo;
-
-    if (m > 0) {
-      saldoComJuros = arredondar(baseCalculo * (1 + taxaMensal));
-      jurosNoMes = arredondar(saldoComJuros - baseCalculo);
-    }
-
-    jurosAcumulado = arredondar(jurosAcumulado + jurosNoMes);
-    saldoAtual = saldoComJuros;
+    saldoAtual = saldoAtual + jurosNoMes + valorMensal;
+    investidoAcumulado = investidoAcumulado + valorMensal;
+    jurosAcumulado = jurosAcumulado + jurosNoMes;
 
     resultados.push({
       mes: m,
-      juros: jurosNoMes,
-      totalInvestido: investidoAcumulado,
-      totalJuros: jurosAcumulado,
-      totalAcumulado: saldoAtual
+      juros: arredondarDisplay(jurosNoMes),
+      totalInvestido: arredondarDisplay(investidoAcumulado),
+      totalJuros: arredondarDisplay(jurosAcumulado),
+      totalAcumulado: arredondarDisplay(saldoAtual)
     });
   }
 
   return {
-    totalFinal: saldoAtual,
-    totalInvestido: investidoAcumulado,
-    totalJuros: jurosAcumulado,
+    totalFinal: arredondarDisplay(saldoAtual),
+    totalInvestido: arredondarDisplay(investidoAcumulado),
+    totalJuros: arredondarDisplay(jurosAcumulado),
     dados: resultados
   };
 };

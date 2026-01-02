@@ -9,13 +9,13 @@ const App: React.FC = () => {
   const [resultado, setResultado] = useState<ResumoSimulacao | null>(null);
 
   useEffect(() => {
-    // Cálculo inicial automático para preencher a tela no preview
+    // Cálculo inicial automático para preencher a tela no preview com valores de referência
     gerenciarCalculo({
       valorInicial: 1000,
       valorMensal: 1000,
       taxa: 8,
       unidadeTaxa: UnidadeTaxa.ANUAL,
-      periodo: 20,
+      periodo: 10,
       unidadeTempo: UnidadeTempo.ANOS
     });
   }, []);
